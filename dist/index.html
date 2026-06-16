@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraAI - Chatbot</title>
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Style Sheet -->
+  <script type="module" crossorigin src="/assets/index-D9qHrKoj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BEk9zsiG.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar: Chat History and Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <!-- Spark Icon -->
+                    <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9 12 2"/>
+                    </svg>
+                    <span>AuraAI - Chatbot</span>
+                </div>
+                
+                <button class="new-chat-btn" id="newChatBtn" title="New Chat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    <span>New chat</span>
+                </button>
+            </div>
+
+            <!-- Search Box -->
+            <div class="sidebar-navigation">
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" id="historySearch" placeholder="Search chats...">
+                </div>
+            </div>
+
+            <!-- Conversations List -->
+            <div class="conversations-list-container">
+                <div class="section-title">Recent Chats</div>
+                <ul class="conversations-list" id="conversationsList">
+                    <!-- Dynamic chat threads go here -->
+                </ul>
+            </div>
+
+            <!-- Sidebar Footer: Profile and Settings -->
+            <div class="sidebar-footer">
+                <div class="quick-actions-row">
+                    <button class="footer-action-btn" id="themeToggleBtn" title="Toggle Theme">
+                        <svg class="icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                        <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <span id="themeToggleText">Light Mode</span>
+                    </button>
+                    
+                    <button class="footer-action-btn" id="openSettingsBtn" title="Settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                        <span>Settings</span>
+                    </button>
+                </div>
+                
+                <div class="user-profile-card">
+                    <div class="profile-info">
+                        <div class="profile-avatar" id="userProfileAvatar">U</div>
+                        <div class="profile-meta">
+                            <span class="profile-name" id="userProfileName">User</span>
+                        </div>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn" title="Log Out">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Sidebar overlay for Mobile screens -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <!-- Header bar -->
+            <header class="chat-header">
+                <div class="header-left">
+                    <button class="menu-toggle-btn" id="menuToggleBtn" title="Toggle Sidebar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- ChatGPT-style model selector dropdown -->
+                    <div class="model-dropdown-container">
+                        <button class="model-dropdown-trigger" id="modelDropdownBtn" title="Change Assistant Profile">
+                            <div class="bot-header-avatar" id="botHeaderAvatar">N</div>
+                            <span id="botHeaderName">Nova</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        
+                        <div class="model-dropdown-menu" id="modelDropdownMenu" style="display: none;">
+                            <div class="dropdown-header">Select Assistant Persona</div>
+                            <div class="bot-grid" id="botGrid">
+                                <!-- Dynamic bot cards go here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden elements for backward compatibility -->
+                <div id="activeBotHeader" style="display: none;">
+                    <span id="botHeaderStatus"></span>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-actions">
+                        <!-- Speak Aloud Toggle -->
+                        <button class="header-action-btn" id="readAloudToggle" title="Enable Voice Output">
+                            <svg class="voice-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                            </svg>
+                            <svg class="voice-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <line x1="23" y1="9" x2="17" y2="15"/>
+                                <line x1="17" y1="9" x2="23" y2="15"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Export Chat Button -->
+                        <button class="header-action-btn" id="exportChatBtn" title="Export Conversation">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                        </button>
+    
+                        <!-- Delete Conversation Button -->
+                        <button class="header-action-btn" id="deleteChatBtn" title="Delete Conversation">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                <line x1="10" y1="11" x2="10" y2="17"/>
+                                <line x1="14" y1="11" x2="14" y2="17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+ 
+            <!-- Chat Viewport -->
+            <div class="chat-viewport" id="chatViewport">
+                <!-- Chat messages will be dynamically populated here -->
+            </div>
+
+            <!-- Input Form & suggestions inside a layout wrapper -->
+            <div class="chat-input-area">
+                <div class="chat-input-container">
+                    <form class="chat-input-form" id="chatInputForm" autocomplete="off">
+                        
+                        <!-- File input & button -->
+                        <input type="file" id="fileAttachment" style="display: none;" accept=".txt,.js,.py,.html,.css,.json,.md,image/*">
+                        <button type="button" class="input-action-btn attachment-circle-btn" id="attachmentBtn" title="Attach Text File or Image">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+    
+                        <!-- Text area input -->
+                        <div class="input-wrapper">
+                            <!-- File indicator badge -->
+                            <div class="attachment-preview" id="attachmentPreview" style="display: none;">
+                                <span class="attachment-name" id="attachmentName">filename.txt</span>
+                                <button type="button" class="remove-attachment-btn" id="removeAttachmentBtn" title="Remove attachment">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"/>
+                                        <line x1="6" y1="6" x2="18" y2="18"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <textarea id="chatInput" rows="1" placeholder="Ask anything" required></textarea>
+                        </div>
+    
+                        <!-- Voice Recognition Button -->
+                        <button type="button" class="input-action-btn mic-circle-btn" id="voiceInputBtn" title="Speech to Text">
+                            <svg class="mic-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                            <svg class="mic-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                                <circle class="ripple" cx="12" cy="11" r="12" stroke-opacity="0.8"/>
+                            </svg>
+                        </button>
+    
+                        <!-- Send Button -->
+                        <button type="submit" class="send-btn" id="sendBtn" title="Send Message">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="12" y1="19" x2="12" y2="5"/>
+                                <polyline points="5 12 12 5 19 12"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Floating suggestion chips below input, centered -->
+                <div class="suggestions-container" id="suggestionsContainer">
+                    <!-- Suggestion chips will be dynamically populated here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-backdrop" id="settingsModal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>AuraAI Settings</h3>
+                <button class="close-modal-btn" id="closeSettingsBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Voice Settings -->
+                <div class="settings-section">
+                    <h4>Voice Settings (Text-to-Speech)</h4>
+                    <div class="settings-group">
+                        <label for="voiceSelect">Speech Voice</label>
+                        <select id="voiceSelect" class="settings-control">
+                            <!-- Dynamic voice options populated by JS -->
+                        </select>
+                    </div>
+                    <div class="settings-group">
+                        <label for="voiceRate">Speech Rate (Speed): <span id="rateVal">1.0</span>x</label>
+                        <input type="range" id="voiceRate" min="0.5" max="2" step="0.1" value="1.0" class="range-slider">
+                    </div>
+                    <div class="settings-group">
+                        <label for="voicePitch">Speech Pitch: <span id="pitchVal">1.0</span></label>
+                        <input type="range" id="voicePitch" min="0.5" max="1.5" step="0.1" value="1.0" class="range-slider">
+                    </div>
+                </div>
+
+                <!-- API Connection Settings -->
+                <div class="settings-section">
+                    <h4>API Connection Settings</h4>
+                    <div class="settings-group">
+                        <label for="geminiApiKey">Gemini API Key</label>
+                        <input type="password" id="geminiApiKey" placeholder="Enter Gemini API key here..." class="settings-control">
+                        <small style="color: var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: block;">
+                            Get a free API key from <a href="https://aistudio.google.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Google AI Studio</a>.
+                        </small>
+                    </div>
+                    <div class="settings-group horizontal" style="margin-top: 8px;">
+                        <span class="setting-label-desc">
+                            <strong>Connection Mode</strong>
+                            <p>Indicates if live responses are active.</p>
+                        </span>
+                        <span class="status-badge offline" id="apiStatusBadge">Offline Simulator</span>
+                    </div>
+                </div>
+
+                <!-- Storage & Performance Settings -->
+                <div class="settings-section">
+                    <h4>Storage Options</h4>
+                    <div class="settings-group horizontal">
+                        <span class="setting-label-desc">
+                            <strong>Clear Application Data</strong>
+                            <p>Remove all saved conversations and threads permanently.</p>
+                        </span>
+                        <button class="danger-btn" id="clearAllDataBtn">Clear Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Screen Overlay -->
+    <div class="auth-overlay" id="authOverlay" style="display: flex;">
+        <div class="auth-card">
+            <!-- Brand header inside card -->
+            <div class="auth-brand">
+                <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polygon points="12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9 12 2"/>
+                </svg>
+                <span>AuraAI - Chatbot</span>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="auth-form-container" id="loginFormContainer">
+                <h2>Welcome Back</h2>
+                <p class="auth-subtitle">Log in to sync your chats and access online web research.</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email ID</label>
+                        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="auth-error-msg" id="loginErrorMsg"></div>
+                    <button type="submit" class="auth-submit-btn">Log In</button>
+                </form>
+                <div class="auth-toggle-text">
+                    Don't have an account? <a href="#" id="showSignupLink">Sign Up</a>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form-container" id="signupFormContainer" style="display: none;">
+                <h2>Create Account</h2>
+                <p class="auth-subtitle">Register to unlock personalized AI assistants.</p>
+                <form id="signupForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signupFirstName">First Name</label>
+                            <input type="text" id="signupFirstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupLastName">Last Name</label>
+                            <input type="text" id="signupLastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email ID</label>
+                        <input type="email" id="signupEmail" placeholder="john.doe@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupContact">Contact Number</label>
+                        <input type="tel" id="signupContact" placeholder="+1234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="auth-error-msg" id="signupErrorMsg"></div>
+                    <button type="submit" class="auth-submit-btn">Create Account</button>
+                </form>
+                <div class="auth-toggle-text">
+                    Already have an account? <a href="#" id="showLoginLink">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript File -->
+</body>
+</html>

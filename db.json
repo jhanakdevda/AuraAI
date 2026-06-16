@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "user_1781641479555",
+      "firstName": "jhanak",
+      "lastName": "devda",
+      "email": "jalakdevda@gmail.com",
+      "contactNumber": "8000934802",
+      "salt": "d219600a1dfff7a48b94d69dd961235f",
+      "passwordHash": "52248d31dbd71de044534c10880de2ffa199dfece99b9dc54f9556ea7baec6ac50f4479ce3524b7bbc8faf96dc532b7f22a38af401f35788ac70be51fb3ea930"
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread_1781641479581",
+      "name": "Chat with Nova",
+      "botId": "nova",
+      "messages": [],
+      "userId": "user_1781641479555"
+    }
+  ]
+}
